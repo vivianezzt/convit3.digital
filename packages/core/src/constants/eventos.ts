@@ -2,7 +2,7 @@ import { Evento } from '../evento'
 
 const eventos: Evento[] = [
   {
-    id: 'mtqow2jy7fk-n19uccb98ts-56pbqlvjery',
+    id: '1bb90a3c-ed2b-4522-8558-6c6b9bef97cc',
     alias: 'evento-fullstack',
     senha: 'senha123',
     nome: 'Evento de Desenvolvimento Fullstack',
@@ -43,7 +43,7 @@ const eventos: Evento[] = [
     ]
   },
   {
-    id: 'd1epl2u4rev-uoqackf39t-uvouv1ibglm',
+    id: '2fbb3647-2492-4901-95ad-70b9d49d63d4',
     alias: 'evento-js-avancado',
     senha: 'js2024',
     nome: 'Workshop Avançado de JavaScript',
@@ -75,7 +75,7 @@ const eventos: Evento[] = [
     ]
   },
   {
-    id: '3rcvt8q0h0t-94peyz8009a-69272j7c86w',
+    id: 'ab11ac5d-f8bb-42c7-8c59-edb02f9e9b14',
     alias: 'evento-dev-frontend',
     senha: 'front123',
     nome: 'Bootcamp de Desenvolvimento Frontend',
@@ -115,7 +115,7 @@ const eventos: Evento[] = [
     ]
   },
   {
-    id: 'nvtk89hb06r-xwvqttiq96-6b99vo0chu6',
+    id: '9c63c0b5-873f-4ab3-98d4-7fb0bd36c970',
     alias: 'casamento-alberto-marina',
     senha: 'casamento2024',
     nome: 'Casamento do Alberto e Marina',
@@ -148,7 +148,7 @@ const eventos: Evento[] = [
     ]
   },
   {
-    id: 'ild5p6kzel-trogwdfsnu-hyco0stp5uw',
+    id: '4c96aadc-f5e2-43cf-97f1-9b45b07b33a9',
     alias: 'aniversario-joao',
     senha: 'joao2024',
     nome: 'Aniversário do João - 30 Anos',
@@ -181,7 +181,7 @@ const eventos: Evento[] = [
     ]
   },
   {
-    id: 'lu6xhtriao-g5n4eizrxde-ok0284ye6rk',
+    id: 'd0f03cc8-2df5-42b7-8ad9-7bb3a122756d',
     alias: 'inauguracao-Samsung',
     senha: 'estrela2024',
     nome: 'Inauguração da Loja Samsung',
@@ -214,7 +214,7 @@ const eventos: Evento[] = [
     ]
   },
   {
-    id: 'oofeal44ofo-1n9y04ls0o4-wrs2z8ih5ga',
+    id: 'e56e30b1-2a76-4d95-8dd3-50f4dc57b529',
     alias: 'reuniao-familia-oliveira',
     senha: 'familia2024',
     nome: 'Reunião da Família Oliveira',

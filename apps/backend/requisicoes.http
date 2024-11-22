@@ -1,4 +1,24 @@
 GET http://localhost:4000/ping
 
 ###
-GET http://localhost:4000/eventos
+GET http://localhost:4000/eventos/eventos
+
+###
+GET http://localhost:4000/eventos/evento-fullstack
+
+###
+
+GET http://localhost:4000/eventos/2fbb3647-2492-4901-95ad-70b9d49d63d4
+
+###
+GET http://localhost:4000/eventos/validar/evento-fullstack/2fbb3647-2492-4901-95ad-70b9d49d63d4
+
+###
+POST http://localhost:4000/eventos/acessar
+Content-Type: application/json
+
+  {
+    "id": "d0f03cc8-2df5-42b7-8ad9-7bb3a122756d",
+    "senha": "estrela2024"
+  }
+
