@@ -1,10 +1,10 @@
 export default interface Convidado {
-  id: string;
-  nome: string;
-  email: string;
-  confirmado: boolean;
-  possuiAcompanhantes: boolean;
-  qtdeAcompanhantes: number;
+  id: string
+  nome: string
+  email: string
+  confirmado: boolean
+  possuiAcompanhantes: boolean
+  qtdeAcompanhantes: number
 }
 /* Define a interface Convidado, que descreve a estrutura de um objeto de convidado.
 A propriedade 'id' é uma string que representa um identificador único para o convidado.

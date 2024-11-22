@@ -1,5 +1,5 @@
-import { Id } from "../../shared"; // Importa uma classe/utilitário responsável por gerar identificadores únicos.
-import Evento from "../model/Evento"; // Importa o modelo `Evento`, que representa a estrutura de um evento.
+import { Id } from '../../shared' // Importa uma classe/utilitário responsável por gerar identificadores únicos.
+import Evento from '../model/Evento' // Importa o modelo `Evento`, que representa a estrutura de um evento.
 
 /**
  * Cria um objeto de evento com valores padrão (inicialmente vazio).
@@ -12,14 +12,14 @@ export default function criarEventoVazio(): Partial<Evento> {
     id: Id.novo(),
 
     // Define valores padrão para as propriedades do evento.
-    nome: "", // Nome do evento (inicialmente vazio).
-    descricao: "", // Descrição do evento (inicialmente vazia).
+    nome: '', // Nome do evento (inicialmente vazio).
+    descricao: '', // Descrição do evento (inicialmente vazia).
     data: new Date(), // Data atual como valor padrão para o campo `data`.
-    local: "", // Local do evento (inicialmente vazio).
+    local: '', // Local do evento (inicialmente vazio).
     publicoEsperado: 1, // Público esperado inicial (valor mínimo padrão de 1).
-    imagem: "", // URL ou caminho da imagem representativa do evento (inicialmente vazio).
-    imagemBackground: "", // URL ou caminho da imagem de fundo do evento (inicialmente vazio).
-  };
+    imagem: '', // URL ou caminho da imagem representativa do evento (inicialmente vazio).
+    imagemBackground: '' // URL ou caminho da imagem de fundo do evento (inicialmente vazio).
+  }
 }
 /*
 Cenários de uso:

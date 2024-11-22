@@ -1,6 +1,6 @@
-import { Alias, Id, Senha } from "../../shared"; // Importa utilitários para geração de alias, IDs únicos e senhas.
-import Evento from "../model/Evento"; // Importa o modelo `Evento`, que representa a estrutura de um evento.
-import validarEvento from "./validarEvento"; // Importa a função responsável por validar os dados de um evento.
+import { Id, Senha } from '../../shared' // Importa utilitários para geração de alias, IDs únicos e senhas.
+import Evento from '../model/Evento' // Importa o modelo `Evento`, que representa a estrutura de um evento.
+import validarEvento from './validarEvento' // Importa a função responsável por validar os dados de um evento.
 
 /**
  * Complementa um objeto parcial de evento com valores padrão e validações obrigatórias.
@@ -10,14 +10,14 @@ import validarEvento from "./validarEvento"; // Importa a função responsável 
  * @throws {Error} Lança uma exceção se o evento não passar na validação.
  */
 export default function complementarEvento(
-  eventoParcial: Partial<Evento>,
+  eventoParcial: Partial<Evento>
 ): Evento {
   // Valida o evento parcial usando a função `validarEvento`.
-  const erros = validarEvento(eventoParcial);
+  const erros = validarEvento(eventoParcial)
 
   // Se houver erros, lança uma exceção contendo todas as mensagens de erro concatenadas.
   if (erros.length) {
-    throw new Error(erros.join("\n"));
+    throw new Error(erros.join('\n'))
   }
 
   // Cria o objeto completo do evento, complementando os campos que estão ausentes.
@@ -25,11 +25,11 @@ export default function complementarEvento(
     ...eventoParcial, // Copia todas as propriedades do objeto parcial.
     id: eventoParcial.id ?? Id.novo(), // Gera um ID único se não houver um ID fornecido.
     senha: eventoParcial.senha ?? Senha.nova(20), // Gera uma senha aleatória de 20 caracteres se não houver uma senha fornecida.
-    publicoEsperado: +(eventoParcial.publicoEsperado ?? 1), // Converte o público esperado para um número, com valor padrão de 1.
-  } as Evento;
+    publicoEsperado: +(eventoParcial.publicoEsperado ?? 1) // Converte o público esperado para um número, com valor padrão de 1.
+  } as Evento
 
   // Retorna o evento completo, agora preenchido com todos os campos necessários.
-  return evento;
+  return evento
 }
 /*
 Explicação Geral:
