@@ -1,67 +1,72 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import {
-  complementarConvidado,
-  Convidado,
-  Data,
-  Evento,
-  eventos,
-  Id,
-} from 'core';
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  Param,
+  Post,
+} from '@nestjs/common';
+import { complementarConvidado, Convidado, Data, Evento, Id } from 'core';
+import { EventoPrisma } from './evento.prisma';
 
 @Controller('eventos')
 export class EventosController {
+  constructor(readonly repo: EventoPrisma) {}
   @Post()
   async salvarEvento(@Body() evento: Evento) {
-    const enventoCadastrado = eventos.find((ev) => ev.alias === evento.alias);
+    const enventoCadastrado = await this.repo.buscarPorAlias(evento.alias);
+
     if (enventoCadastrado && enventoCadastrado.id !== evento.id) {
-      throw new Error('Alias já cadastrado');
+      throw new HttpException('Alias já cadastrado', 400);
     }
     const eventoCompleto = this.deserializar(evento);
-    eventos.push(eventoCompleto);
-    return this.serializar(eventoCompleto);
+    await this.repo.salvar(eventoCompleto);
   }
   @Post(':alias/convidado')
   async salvarConvidado(
     @Param('alias') alias: string,
     @Body() convidado: Convidado,
   ) {
-    const evento = eventos.find((evento) => evento.alias === alias);
+    const evento = await this.repo.buscarPorAlias(alias);
     if (!evento) {
-      throw new Error('Evento não encontrado');
+      throw new HttpException('Evento não encontrado', 400);
     }
-    evento.convidados.push(complementarConvidado(convidado));
-    return this.serializar(evento);
+    const convidadoCompleto = complementarConvidado(convidado);
+    await this.repo.salvarConvidado(evento, convidadoCompleto);
   }
   @Post('acessar')
   async acessarEvento(@Body() dados: { id: string; senha: string }) {
-    const evento = eventos.find(
-      (evento) => evento.id === dados.id && evento.senha === dados.senha,
-    );
+    const evento = await this.repo.buscarPorId(dados.id);
     if (!evento) {
-      throw new Error('Evento não encontrado ou senha inválida');
+      throw new HttpException('Evento não encontrado', 400);
+    }
+    if (evento.senha !== dados.senha) {
+      throw new HttpException('Evento não encontrado ou senha inválida', 400);
     }
     return this.serializar(evento);
   }
 
   @Get('eventos')
   async buscarEventos() {
+    const eventos = await this.repo.buscarTodos();
     return eventos.map(this.serializar);
   }
   @Get(':idOuAlias')
   async buscarEvento(@Param('idOuAlias') idOuAlias: string) {
+    let evento: Evento;
     if (Id.valido(idOuAlias)) {
-      return this.serializar(eventos.find((evento) => evento.id === idOuAlias));
+      evento = await this.repo.buscarPorId(idOuAlias);
     } else {
-      return this.serializar(
-        eventos.find((evento) => evento.alias === idOuAlias),
-      );
+      evento = await this.repo.buscarPorAlias(idOuAlias);
     }
+    return this.serializar(evento);
   }
   @Get('validar/:alias/:id')
   async validar(@Param('alias') alias: string, @Param('id') id: string) {
-    const evento = eventos.find((evento) => evento.alias === alias);
+    const evento = await this.repo.buscarPorAlias(alias);
     return { valido: !evento || evento.id === id };
   }
+
   private serializar(evento: Evento) {
     if (!evento) return null;
     return {
@@ -74,6 +79,6 @@ export class EventosController {
     return {
       ...evento,
       data: Data.desformatar(evento.data),
-    };
+    } as Evento;
   }
 }

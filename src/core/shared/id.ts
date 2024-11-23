@@ -16,4 +16,4 @@ export default class Id {
 }
 
 // Exemplo de uso: Geração de um novo ID único.
-// console.log(Id.novo());
+ console.log(Id.novo());
